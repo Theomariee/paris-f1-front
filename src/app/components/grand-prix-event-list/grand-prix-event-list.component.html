@@ -1,0 +1,26 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="col-md-6">
+      <h4>Liste des Grand-Prix</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let grandPrixEvent of grandPrixEvents; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveGrandPrixEvent(grandPrixEvent, i)"
+        >
+          <span
+            class="fib fi-{{ grandPrixEvent.hostingCountryAlphaTwoCode | lowercase }}"
+          ></span>
+          {{ grandPrixEvent.eventName }}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <app-grand-prix-event-details
+        [viewMode]="true"
+        [currentGrandPrixEvent]="currentGrandPrixEvent"
+      ></app-grand-prix-event-details>
+    </div>
+  </div>
+</div>

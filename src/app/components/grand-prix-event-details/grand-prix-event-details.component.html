@@ -1,0 +1,150 @@
+<div *ngIf="viewMode; else editable">
+  <div *ngIf="currentGrandPrixEvent.id">
+    <h4>
+      <span class="fib fi-fr"></span>
+      {{ currentGrandPrixEvent.eventName }}
+    </h4>
+    <div>
+      <label><strong>Pays : </strong></label>
+      {{ currentGrandPrixEvent.hostingCountry }}
+    </div>
+    <div>
+      <label><strong>Ville : </strong></label>
+      {{ currentGrandPrixEvent.hostingCity }}
+    </div>
+    <div>
+      <label><strong>Date de début : </strong></label>
+      {{ currentGrandPrixEvent.eventStartDate | date: "dd/MM/y HH:mm" }}
+    </div>
+    <div>
+      <label><strong>Date de fin : </strong></label>
+      {{ currentGrandPrixEvent.eventEndDate | date: "dd/MM/y HH:mm" }}
+    </div>
+    <div>
+      <label><strong>Date limite des pronostics : </strong></label>
+      {{ currentGrandPrixEvent.betEndDate | date: "dd/MM/y HH:mm" }}
+    </div>
+    <a
+      class="badge badge-warning"
+      routerLink="/grand-prix-events/{{ currentGrandPrixEvent.id }}"
+    >
+      Modifier
+    </a>
+  </div>
+  <div *ngIf="!currentGrandPrixEvent">
+    <br />
+    <p>Sélectionnez un Grand-Prix ...</p>
+  </div>
+</div>
+<ng-template #editable>
+  <div *ngIf="currentGrandPrixEvent.id" class="edit-form">
+    <h4>Grand-Prix</h4>
+    <form>
+      <div class="form-group">
+        <label for="hostingCountry">Pays</label>
+        <input
+          type="text"
+          class="form-control"
+          id="hostingCountry"
+          required
+          [(ngModel)]="currentGrandPrixEvent.hostingCountry"
+          name="hostingCountry"
+        />
+      </div>
+      <div class="form-group">
+        <label for="hostingCountryAlphaTwoCode">Code Alpha2 du pays</label>
+        <input
+          type="text"
+          class="form-control"
+          id="hostingCountryAlphaTwoCode"
+          required
+          [(ngModel)]="currentGrandPrixEvent.hostingCountryAlphaTwoCode"
+          name="hostingCountryAlphaTwoCode"
+        />
+      </div>
+      <div class="form-group">
+        <label for="hostingCity">Ville</label>
+        <input
+          class="form-control"
+          id="hostingCity"
+          required
+          [(ngModel)]="currentGrandPrixEvent.hostingCity"
+          name="hostingCity"
+        />
+      </div>
+      <div class="form-group">
+        <label for="eventName">Nom de l'évènement</label>
+        <input
+          class="form-control"
+          id="eventName"
+          required
+          [(ngModel)]="currentGrandPrixEvent.eventName"
+          name="eventName"
+        />
+      </div>
+      <div class="form-group">
+        <label for="eventStartDate">Date de début de l'évènement</label>
+        <input
+          class="form-control"
+          id="eventStartDate"
+          required
+          [ngModel]="
+            currentGrandPrixEvent.eventStartDate | date: 'yyyy-MM-ddTHH:mm'
+          "
+          (ngModelChange)="
+            currentGrandPrixEvent.eventStartDate = dateChanged($event)
+          "
+          name="eventStartDate"
+          type="datetime-local"
+        />
+      </div>
+      <div class="form-group">
+        <label for="eventEndDate">Date de fin de l'évènement</label>
+        <input
+          class="form-control"
+          id="eventEndDate"
+          required
+          [ngModel]="
+            currentGrandPrixEvent.eventEndDate | date: 'yyyy-MM-ddTHH:mm'
+          "
+          (ngModelChange)="
+            currentGrandPrixEvent.eventEndDate = dateChanged($event)
+          "
+          name="eventEndDate"
+          type="datetime-local"
+        />
+      </div>
+      <div class="form-group">
+        <label for="betEndDate">Date de fin des pronostics</label>
+        <input
+          class="form-control"
+          id="betEndDate"
+          required
+          [ngModel]="
+            currentGrandPrixEvent.betEndDate | date: 'yyyy-MM-ddTHH:mm'
+          "
+          (ngModelChange)="
+            currentGrandPrixEvent.betEndDate = dateChanged($event)
+          "
+          name="betEndDate"
+          type="datetime-local"
+        />
+      </div>
+    </form>
+    <button class="badge badge-danger mr-2" (click)="deleteGrandPrixEvent()">
+      Supprimer
+    </button>
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateGrandPrixEvent()"
+    >
+      Mettre à jour
+    </button>
+    <p>{{ message }}</p>
+  </div>
+  <div *ngIf="!currentGrandPrixEvent.id">
+    <br />
+    <p>Impossible d'accéder à ce Grand-Prix ...</p>
+  </div>
+</ng-template>

@@ -1,0 +1,90 @@
+<div>
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="hostingCountry">Pays</label>
+        <input
+          type="text"
+          class="form-control"
+          id="hostingCountry"
+          required
+          [(ngModel)]="grandPrixEvent.hostingCountry"
+          name="hostingCountry"
+        />
+      </div>
+      <div class="form-group">
+        <label for="hostingCountryAlphaTwoCode">Code Alpha2 du pays</label>
+        <input
+          type="text"
+          class="form-control"
+          id="hostingCountryAlphaTwoCode"
+          required
+          [(ngModel)]="grandPrixEvent.hostingCountryAlphaTwoCode"
+          name="hostingCountryAlphaTwoCode"
+        />
+      </div>
+      <div class="form-group">
+        <label for="hostingCity">Ville</label>
+        <input
+          class="form-control"
+          id="hostingCity"
+          required
+          [(ngModel)]="grandPrixEvent.hostingCity"
+          name="hostingCity"
+        />
+      </div>
+      <div class="form-group">
+        <label for="eventName">Nom de l'évènement</label>
+        <input
+          class="form-control"
+          id="eventName"
+          required
+          [(ngModel)]="grandPrixEvent.eventName"
+          name="eventName"
+        />
+      </div>
+      <div class="form-group">
+        <label for="eventStartDate">Date de début de l'évènement</label>
+        <input
+          class="form-control"
+          id="eventStartDate"
+          required
+          [(ngModel)]="grandPrixEvent.eventStartDate"
+          name="eventStartDate"
+          type="datetime-local"
+        />
+      </div>
+      <div class="form-group">
+        <label for="eventEndDate">Date de fin de l'évènement</label>
+        <input
+          class="form-control"
+          id="eventEndDate"
+          required
+          [(ngModel)]="grandPrixEvent.eventEndDate"
+          name="eventEndDate"
+          type="datetime-local"
+        />
+      </div>
+      <div class="form-group">
+        <label for="betEndDate">Date de fin des pronostics</label>
+        <input
+          class="form-control"
+          id="betEndDate"
+          required
+          [(ngModel)]="grandPrixEvent.betEndDate"
+          name="betEndDate"
+          type="datetime-local"
+        />
+      </div>
+      <button (click)="saveGrandPrixEvent()" class="btn btn-success">
+        Enregistrer
+      </button>
+    </div>
+    <div *ngIf="submitted">
+      <h4>Le Grand Prix a été créé avec succès !</h4>
+      <button class="btn btn-success" (click)="newGrandPrixEvent()">
+        En créer un nouveau
+      </button>
+    </div>
+  </div>
+</div>
