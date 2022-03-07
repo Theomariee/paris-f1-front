@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GrandPrixEvent } from '../models/grand-prix-event.model';
+import { Bet } from '../models/bet.model';
 const baseUrl = 'http://localhost:8080/api/grand-prix-events';
 
 @Injectable({
@@ -12,6 +13,12 @@ export class GrandPrixEventService {
 
   getAll(): Observable<GrandPrixEvent[]> {
     return this.http.get<GrandPrixEvent[]>(baseUrl);
+  }
+  getAllEventsToCome(): Observable<GrandPrixEvent[]> {
+    let currentDate = new Date().getTime();
+    return this.http.get<GrandPrixEvent[]>(
+      `${baseUrl}?fromDate=${currentDate}`
+    );
   }
   get(id: any): Observable<GrandPrixEvent> {
     return this.http.get(`${baseUrl}/${id}`);
@@ -24,5 +31,11 @@ export class GrandPrixEventService {
   }
   delete(id: any): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`);
+  }
+
+  // Bets
+  getAllBets(id: any): Observable<Bet[]> {
+    let playerId = 1;
+    return this.http.get<Bet[]>(`${baseUrl}/${id}/bets?playerId=${playerId}`);
   }
 }

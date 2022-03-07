@@ -1,3 +1,6 @@
+import { Bet } from './bet.model';
+import { GrandPrixEventLiveStatus } from './grand-prix-event-live-status-enum.model';
+
 export class GrandPrixEvent {
   id?: bigint;
   hostingCountry?: string;
@@ -7,4 +10,6 @@ export class GrandPrixEvent {
   eventStartDate?: Date;
   eventEndDate?: Date;
   betEndDate?: Date;
+  liveStatus?: GrandPrixEventLiveStatus;
+  bets?: Bet[];
 }

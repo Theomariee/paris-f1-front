@@ -8,6 +8,7 @@ import { GrandPrixEventDetailsComponent } from './components/grand-prix-event-de
 import { GrandPrixEventListComponent } from './components/grand-prix-event-list/grand-prix-event-list.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BetsListComponent } from './components/bets-list/bets-list.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     AddGrandPrixEventComponent,
     GrandPrixEventDetailsComponent,
     GrandPrixEventListComponent,
+    BetsListComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
